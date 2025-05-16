@@ -2,10 +2,8 @@ from instabot import Bot
 import shutil
 import threading
 
-# Clean old sessions
 shutil.rmtree("config", ignore_errors=True)
 
-# Initialize bot
 bot = Bot()
 logged_in = False
 
@@ -13,7 +11,7 @@ def run_bot_action_in_main_thread(func, *args, **kwargs):
     """Wrapper to ensure bot actions run in the main thread."""
     thread = threading.Thread(target=func, args=args, kwargs=kwargs)
     thread.start()
-    thread.join()  # Wait for the thread to finish
+    thread.join()  
 
 def login(username, password):
     global logged_in
@@ -63,7 +61,6 @@ def dm(users, message):
     except Exception as e:
         print(f"❌ Failed to send message: {e}")
 
-# Main program loop
 def main():
     global logged_in
     while True:
